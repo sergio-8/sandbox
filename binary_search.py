@@ -1,29 +1,49 @@
 import random
+#lista=list()
+num=input("scegli il numero")
+num= int(num)
+lista=list(range(21, 50000))
 
-lista=random.sample((0,1000), 1000)
+count=0
+#print(type(lista))
+#print( num in  lista)
 
+low=0
+high=len(lista)-1
 
-def binary_search( list, number):
-    low=0
-    high=len(list)
+while high>=low:
 
-    while low < high:
+    #preparing splitting mechanism
 
-        #preparing splitting mechanism
-
-        mid=(low+high)/2
-        guess= list[mid]
-
-        #iterating on the search/split/repeat
-
-        if guess== mid:
-            return mid
-        if guess<number:
-            low=mid + 1
-        if guess>number:
-            high=mid -1
-    return (print ("sorry number not in list")
+    mid=(low+high)//2
 
 
+    guess= lista[mid]
+    #print(guess)
 
-binary_search(lista, 15)
+    #iterating on the search/split/repeat
+
+    if guess== num:
+        print(guess)
+        break
+
+
+    if guess<num:
+        low=mid+1
+        count=count +1
+        print("guess is: ", guess , "and it's low, adjusting", count )
+
+    else:
+        count=count+1
+        high=mid-1
+        print("guess is: ", guess, "and it's high, adjusting" , count)
+
+"""
+    else:
+        count=count+1
+        print ("e ora?", count)
+
+
+
+#binary_search(lista,num )
+"""
