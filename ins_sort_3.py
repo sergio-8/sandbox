@@ -16,4 +16,4 @@ for x in range (1, len(list)):
 print(list)
 
 
-
+smp=random.sample()
