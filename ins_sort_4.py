@@ -1,6 +1,6 @@
 import random
 
-list = random.sample(range(10,100),10)
+list = random.sample(range(10,100),20)
 
 print(list)
 
