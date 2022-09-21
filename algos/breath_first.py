@@ -14,8 +14,8 @@ graph['me'] =['gino','mino', 'lino', 'pino', 'dino', 'rino', 'moccolo']
 
 
 graph['gino']=['paolo','cristina','giacomo'  ]
-graph['mino']=['capuzzo', 'ginastro', 'gianca']
-graph['lino']=['paolazzo', 'desimone_maledetto', 'fracchia',]
+graph['mino']=['paolazzo', 'desimone_maledetto', 'paolo','fracchia',]
+graph['lino']=['capuzzo', 'ginastro', 'gianca']
 graph['pino']=[]
 graph['dino']=[]
 graph['rino']=[]
@@ -48,8 +48,9 @@ def search(nome):
         persona=search_queue.popleft()
         print(persona)
         if  persona not in already_searched:
-            if  trova_la_belva(persona) is True:
-                print (f"mi!!!!!  la belva!! e' {persona} ! ")
+            if  trova_la_belva(persona) :
+                print (f"mi!!!!!  la belva umana e' {persona} ! ")
+                return True
             else:
                 search_queue += graph[persona]
                 already_searched.append(persona)
