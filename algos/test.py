@@ -46,9 +46,9 @@ def deep_swap(A: List[int]):
 
     print(A[sx], A[dx])
     print(A)
-    A.insert(3, 0)
+    #A.insert(3, 0)
     print(A)
-    A.remove(0)
+    #A.remove(0)
     print(type(A))
 
     print(A)
@@ -60,9 +60,10 @@ def deep_swap(A: List[int]):
     print(A,'\n', B)
 
     print('now inserting  a zero array')
-    A.insert(1,  [0])
-    B.insert(0, [0])
+    #A.insert(1,  [0])
+    #B.insert(0, [0])
     print(A)
     print(B)
-
+    print('min, max now:')
+    print( min(B),'\n', max(A))
 deep_swap(ceppo)
