@@ -16,7 +16,7 @@ def insort(arr):
         arr[y+1]= key
 
     print(arr)
-
+\
 insort(lista)
 
 
