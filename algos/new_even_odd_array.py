@@ -14,6 +14,7 @@ def even_odd(A: List[int]) -> None:
         else:
             A[n_even], A[n_odd]= A[n_odd],A[n_even]
             n_odd -= 1
+
     return A
 
 
