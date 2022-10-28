@@ -1,19 +1,23 @@
 import random
 from  typing import  List
 
-list= random.sample(range(1,100), 20)
+list= random.sample(range(1,100), 10)
 print(list)
 
 def dutch_flag_partition(pivot_index:int, A:List[int])-> None:
     pivot = A[pivot_index]
     print(pivot)
-    r = 0
+    #r = 0
     for x in range (len(A)):
+        print(f'start base loop, x is {A[x]}')
+        r = 1
 
 
         for y in range (x+1, len(A)):
-            print('evaluating round # ', r)
-            r=+1
+            print('start nested loop')
+
+            print(f'nested loop round {r} , y is {A[y]}')
+            r+=1
 
             if A[y]<pivot:
                 print('about to enforce swap round', r)
@@ -21,11 +25,16 @@ def dutch_flag_partition(pivot_index:int, A:List[int])-> None:
                 print('swapped A =', A)
                 
                 break
+    print('status mid process: ', A)
 
     for z in reversed (range (len(A))):
+        print('start reverse base loop')
         for zap in  reversed (range (z)):
+            print('reverse nested loop')
             if A[zap]> pivot:
+                print('about to enforce reverse swap round', r)
                 A[z], A[zap]= A[zap], A[z]
+                print('swapped A =', A)
                 break
 
 
@@ -33,4 +42,4 @@ def dutch_flag_partition(pivot_index:int, A:List[int])-> None:
     print (A)
 
 
-dutch_flag_partition(10, list)
+dutch_flag_partition(5, list)
