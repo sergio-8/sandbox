@@ -24,7 +24,7 @@ class Mazzo_di_mazzi :
 
 m=Mazzo_di_mazzi()
 print(len(m))
-print(m[-11])
+print(m[-11], '\n \nwhat \n \tthe \nheck \n \n', m[-1])
 
 
 
