@@ -39,6 +39,7 @@ def dutch_flag_partition(pivot_index:int, A:List[int])-> None:
 
 
 
+
     print (A)
 
 
