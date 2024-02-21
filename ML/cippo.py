@@ -4,10 +4,10 @@ from google.api_core.client_options import ClientOptions
 from google.cloud import documentai  # type: ignore
 
 # TODO(developer): Uncomment these variables before running the sample.
-project_id = "412996116194"
+project_id = "4129XXXXXX"
 location = "us"  # Format is "us" or "eu"
-processor_id = "66ecef3533517e2f" # Create processor before running sample
-file_path = "/Users/sergiovillani/Downloads/x.pdf"
+processor_id = "66ecXXXXXX" # Create processor before running sample
+file_path = "/Users/XXXXXXX/Downloads/x.pdf"
 mime_type = "pdf" # Refer to https://cloud.google.com/document-ai/docs/file-types for supported file types
 field_mask = "text"  # Optional. The fields to return in the Document object.
 
@@ -15,10 +15,10 @@ field_mask = "text"  # Optional. The fields to return in the Document object.
 
 """
 process_document_sample(
-  project_id="412996116194",
+  project_id="4129XXXXXXX",
   location="us",
-  processor_id="66ecef3533517e2f",
-  file_path="/Users/sergiovillani/Downloads/1010733_BPO_REDACTED.pdf"
+  processor_id="66eceXXXXXXXXXXX",
+  file_path="/Users/XXXXXXXXX/Downloads/XXXX.pdf"
 )
 
 """
