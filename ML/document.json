@@ -1,0 +1,7 @@
+Document(
+    shards: typing.List[google.cloud.documentai_v1.types.document.Document],
+    gcs_bucket_name: typing.Optional[str] = None,
+    gcs_prefix: typing.Optional[str] = None,
+    gcs_input_uri: typing.Optional[str] = None,
+)
+
