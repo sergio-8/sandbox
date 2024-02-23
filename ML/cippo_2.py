@@ -8,11 +8,11 @@ print('this worked! 1')
 # location = "YOUR_PROCESSOR_LOCATION"  # Format is "us" or "eu"
 # file_path = "/path/to/local/pdf"
 # processor_display_name = "YOUR_PROCESSOR_DISPLAY_NAME" # Must be unique per project, e.g.: "My Processor"
-project_id = "412996116194"
+project_id = "412996XXXXX"
 location = "us"  # Format is "us" or "eu"
-processor_id = "66ecef3533517e2f" # Create processor before running sample
-#file_path = "/Users/sergiovillani/Downloads/1010733_BPO_REDACTED.puppa"
-file_path = "/Users/sergiovillani/Desktop/cacioppo.png"
+processor_id = "66ecef35335XXX" # Create processor before running sample
+#file_path = "/Users/XXXX/Downloads/1010733_BPO_REDACTED.puppa"
+file_path = "/Users/XXX/Desktop/cacioppo.png"
 
 processor_display_name = "auction_test" # Must be unique per project, e.g.: "My Processor"
 print('this worked! 2')
