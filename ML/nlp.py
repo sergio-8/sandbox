@@ -88,7 +88,7 @@ tweet2 = re.sub(r'https?://[^\s\n\r]+', '', tweet2)
 tweet2 = re.sub(r'#', '', tweet2)
 
 print(tweet2)
-
+s
 
 print()
 print('\033[92m' + tweet2)
@@ -103,4 +103,4 @@ tweet_tokens = tokenizer.tokenize(tweet2)
 
 print()
 print('Tokenized string:')
-print(tweet_tokens)
+print(tweet_tokens)sas
