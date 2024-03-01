@@ -1,10 +1,76 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+ 
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+	<title>Liquid Death Infobot Extension</title>
+	<style>
+		body {
+			height: 100%;
+			width: 100%;
+			background-color: #f8f9fa;
+		}
+ 
+		df-messenger {
+			--df-messenger-bot-message: #1B1D1F;
+			--df-messenger-button-titlebar-color: #000000;
+			--df-messenger-chat-background-color: #f8f9fa;
+			--df-messenger-font-color: white;
+			--df-messenger-send-icon: #ff0000;
+			--df-messenger-user-message: #6c757d;
+		}
+	</style>
 </head>
+ 
 <body>
-$END$
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger-cx/staging/bootstrap.js?v=1"></script>
+	<df-messenger
+        df-cx="true"
+        location="us-central1"
+		chat-title="Airbnb Infobot Demo"
+        agent-id="efbe2f79-f804-4430-b45a-b88b9c2d9035"
+        language-code="en" expand="true"></df-messenger>
+	<script>
+		// Returns the first action link it finds in fulfillment messages.
+		function findActionLink(messages) {
+			for (let i = 0; i < messages.length; i++) {
+				if (messages[i].hasOwnProperty("payload") && messages[i].payload.hasOwnProperty("richContent")) {
+					return messages[i].payload.richContent[0][0].actionLink;
+				}
+			}
+			return null; // Returns null if action link is found.
+		}
+ 
+ 
+		document.addEventListener('df-user-input-entered', (event) => {
+			window.parent.postMessage({
+				func: 'stopTalking',
+			}, "*");
+		});
+		document.addEventListener('df-response-received', (event) => {
+			// Extract the response object
+			const response = event.detail.response;
+ 
+			// Access the Link
+			const infobotProvidedUrl = findActionLink(response.queryResult.fulfillmentMessages);
+			window.parent.postMessage({
+				func: 'openUrl',
+				url: infobotProvidedUrl,
+				text: {
+                   text: response.queryResult.fulfillmentMessages[0].text.text[0],
+				   lang: 'en-US',
+				   // Change to FALSE to turn off text-to-speech in the extension.
+				   tts: true
+				}
+			}, "*");
+		});
+	</script>
 </body>
+ 
 </html>
