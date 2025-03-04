@@ -2,7 +2,7 @@ import vertexai
 from vertexai.language_models import TextGenerationModel
 
 # Replace with your actual project ID
-PROJECT_ID = "sv-ml-sandbox"
+PROJECT_ID ="bla bla bla "
 LOCATION = "us-central1"
 
 def get_hello_world_response(project_id: str, location: str) -> str:
