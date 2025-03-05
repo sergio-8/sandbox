@@ -29,13 +29,14 @@ def ask_gemini_with_sdk(prompt, model_name="gemini-2.0-flash"):
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         return response.text
+
     except Exception as e:
         print(f"Error: {e}")
         return None
 
 
 # Example Usage:
-prompt = "explain why the Egregious in eurpe and the US diverged in meaning "
+prompt = "tell me about Supertubos, Portugal "
 result = ask_gemini_with_sdk(prompt)
 
 if result:
