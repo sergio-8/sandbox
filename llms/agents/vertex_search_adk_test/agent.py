@@ -9,7 +9,7 @@ from google.adk.tools import VertexAiSearchTool
 # Replace with your actual Vertex AI Search Datastore ID
 # Format: projects/<PROJECT_ID>/locations/<LOCATION>/collections/default_collection/dataStores/<DATASTORE_ID>
 # e.g., "projects/12345/locations/us-central1/collections/default_collection/dataStores/my-datastore-123"
-YOUR_DATASTORE_ID = "projects/sv-ml-sandbox/locations/us-central1/collections/default_collection/dataStores/bl-ds-test-1_1730215462525"
+YOUR_DATASTORE_ID = "projects/abc/locations/us-central1/collections/default_collection/dataStores/abc"
 
 
 # Constants
