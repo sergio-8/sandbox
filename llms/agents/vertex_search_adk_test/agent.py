@@ -9,8 +9,8 @@ from google.adk.tools import VertexAiSearchTool
 # Replace with your actual Vertex AI Search Datastore ID
 # Format: projects/<PROJECT_ID>/locations/<LOCATION>/collections/default_collection/dataStores/<DATASTORE_ID>
 # e.g., "projects/12345/locations/us-central1/collections/default_collection/dataStores/my-datastore-123"
-YOUR_DATASTORE_ID = "projects/abc/locations/us-central1/collections/default_collection/dataStores/abc"
-
+#YOUR_DATASTORE_ID = "projects/sv-ml-sandbox/locations/global/collections/default_collection/dataStores/bl-ds-test-1_1730215462525"
+YOUR_SEARCH_ENGINE_ID = "projects/sv-ml-sandbox/locations/global/collections/default_collection/engines/bl-test-1_1730215399951"
 
 # Constants
 APP_NAME_VSEARCH = "vertex_search_app"
@@ -21,16 +21,16 @@ GEMINI_2_FLASH = "gemini-2.0-flash-exp"
 
 # Tool Instantiation
 # You MUST provide your datastore ID here.
-vertex_search_tool = VertexAiSearchTool(data_store_id=YOUR_DATASTORE_ID)
+vertex_search_tool = VertexAiSearchTool( search_engine_id=YOUR_SEARCH_ENGINE_ID)
 
 # Agent Definition
 root_agent = LlmAgent(
     name=AGENT_NAME_VSEARCH,
     model=GEMINI_2_FLASH, # Requires Gemini model
     tools=[vertex_search_tool],
-    instruction=f"""You are a helpful assistant that answers questions based on information found in the document store: {YOUR_DATASTORE_ID}.
-    Use the search tool to find relevant information before answering.
-    If the answer isn't in the documents, say that you couldn't find the information.
+    instruction=f"""You are a helpful assistant that answers questions based on information found using the search engine {YOUR_SEARCH_ENGINE_ID} to find relevant information before answering.
+    Your primary knowledge is contained in the search  engine: {YOUR_SEARCH_ENGINE_ID}. If the answer you are looking for isn't in the documents, say that you couldn't find the information.
+    If you find ambiguous or contradictory data in the documents report the ambiguity upfront and quote the documents sources of the ambiguity, instead of trying to resolve the ambiguity. 
     """,
     description="Answers questions using a specific Vertex AI Search datastore.",
 )
