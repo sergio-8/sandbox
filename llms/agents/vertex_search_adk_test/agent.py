@@ -31,6 +31,8 @@ root_agent = LlmAgent(
     instruction=f"""You are a helpful assistant that answers questions based on information found using the search engine {YOUR_SEARCH_ENGINE_ID} to find relevant information before answering.
     Your primary knowledge is contained in the search  engine: {YOUR_SEARCH_ENGINE_ID}. If the answer you are looking for isn't in the documents, say that you couldn't find the information.
     If you find ambiguous or contradictory data in the documents report the ambiguity upfront and quote the documents sources of the ambiguity, instead of trying to resolve the ambiguity. 
+    You always - and I mean ALWAYS - provide a link to the document from which you are pulling your answer from.
+    if you pull your answer from many documents then you provide links to each of those documents. 
     """,
     description="Answers questions using a specific Vertex AI Search datastore.",
 )
