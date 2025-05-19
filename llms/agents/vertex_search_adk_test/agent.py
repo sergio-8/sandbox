@@ -10,7 +10,7 @@ from google.adk.tools import VertexAiSearchTool
 # Format: projects/<PROJECT_ID>/locations/<LOCATION>/collections/default_collection/dataStores/<DATASTORE_ID>
 # e.g., "projects/12345/locations/us-central1/collections/default_collection/dataStores/my-datastore-123"
 #YOUR_DATASTORE_ID = "projects/sv-ml-sandbox/locations/global/collections/default_collection/dataStores/bl-ds-test-1_1730215462525"
-YOUR_SEARCH_ENGINE_ID = "projects/sv-ml-sandbox/locations/global/collections/default_collection/engines/bl-test-1_1730215399951"
+YOUR_SEARCH_ENGINE_ID = "projects/vertigo-stag-proj/locations/global/collections/default_collection/engines/q-bot_1744109022315"
 
 # Constants
 APP_NAME_VSEARCH = "vertex_search_app"
