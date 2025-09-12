@@ -1,0 +1,46 @@
+[
+  {
+    "name": "casec9c4dc",
+    "data": [
+      {
+        "query": "hi",
+        "expected_tool_use": [],
+        "expected_intermediate_agent_responses": [],
+        "reference": "Hi there! How can I help you today?\n"
+      },
+      {
+        "query": "what can you tell me about andriod platforms",
+        "expected_tool_use": [],
+        "expected_intermediate_agent_responses": [],
+        "reference": "From the available documents, I can share the following information about Android platforms:\n\n*   **Android Security Bulletins:** These bulletins describe the latest Android Security Vulnerabilities and provide reference patch fixes. They address Google security vulnerabilities, QTI-specific security vulnerabilities, and upstream security vulnerabilities. (Source: 1)\n*   **Security Patch Levels:** It is important for OEMs to review and ensure that all fixes are present before setting the official `PLATFORM_SECURITY_PATCH` level in their build. (Source: 1)\n*   **Bluetooth Security:** Android Bluetooth host stack enforces an encryption key with at least 56\u2011bit equivalent strength to prevent unsecure attempts by insufficient security for all services. (Source: 2)\n*   **PHY Tuning:** Software-configurable hardware registers can be tuned to adjust the high-speed PHY eye diagram and receiver circuitry. (Source: 4)\n*   **GPIO Functions:** GPIO pins can be configured for various functions. (Source: 5)\n\n"
+      }
+    ],
+    "initial_session": {
+      "state": {},
+      "app_name": "vertex_search_adk_test",
+      "user_id": "user"
+    }
+  },
+  {
+    "name": "case09b914",
+    "data": [
+      {
+        "query": "hi",
+        "expected_tool_use": [],
+        "expected_intermediate_agent_responses": [],
+        "reference": "Hi there! How can I help you today?\n"
+      },
+      {
+        "query": "what can you tell me about andriod platforms",
+        "expected_tool_use": [],
+        "expected_intermediate_agent_responses": [],
+        "reference": "From the available documents, I can share the following information about Android platforms:\n\n*   **Android Security Bulletins:** These bulletins describe the latest Android Security Vulnerabilities and provide reference patch fixes. They address Google security vulnerabilities, QTI-specific security vulnerabilities, and upstream security vulnerabilities. (Source: 1)\n*   **Security Patch Levels:** It is important for OEMs to review and ensure that all fixes are present before setting the official `PLATFORM_SECURITY_PATCH` level in their build. (Source: 1)\n*   **Bluetooth Security:** Android Bluetooth host stack enforces an encryption key with at least 56\u2011bit equivalent strength to prevent unsecure attempts by insufficient security for all services. (Source: 2)\n*   **PHY Tuning:** Software-configurable hardware registers can be tuned to adjust the high-speed PHY eye diagram and receiver circuitry. (Source: 4)\n*   **GPIO Functions:** GPIO pins can be configured for various functions. (Source: 5)\n\n"
+      }
+    ],
+    "initial_session": {
+      "state": {},
+      "app_name": "vertex_search_adk_test",
+      "user_id": "user"
+    }
+  }
+]
