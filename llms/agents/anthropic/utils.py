@@ -1,29 +1,27 @@
 # === Standard Library ===
+import mimetypes
 import os
 import re
-import json
-import base64
-import mimetypes
-from pathlib import Path
 
 # === Third-Party ===
 import pandas as pd
-import matplotlib.pyplot as plt
 from PIL import Image  # (kept if you need it elsewhere)
+from anthropic import Anthropic
 from dotenv import load_dotenv
 from openai import OpenAI
-from anthropic import Anthropic
-from html import escape
+from google import
+
 
 # === Env & Clients ===
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+google_api_key =os.getenv("GOOGLE_API_KEY")
 
 # Both clients read keys from env by default; explicit is also fine:
 openai_client = OpenAI(api_key=openai_api_key) if openai_api_key else OpenAI()
 anthropic_client = Anthropic(api_key=anthropic_api_key) if anthropic_api_key else Anthropic()
-
+google_client =Google(api_key=google_api_key) if google_api_key else Google()
 
 def get_response(model: str, prompt: str) -> str:
     if "claude" in model.lower() or "anthropic" in model.lower():
