@@ -1,0 +1,301 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os
+
+
+from google.adk.agents.callback_context import CallbackContext
+from google.adk.models import LlmResponse, LlmRequest
+from google.adk.tools.agent_tool import AgentTool
+from google.adk.tools import ToolContext
+
+from typing import Optional
+from google.genai import types
+from google.cloud import modelarmor_v1
+from .sub_agents.safety_agent import safety_agent
+from dotenv import load_dotenv
+
+
+# Load the environment variables from the .env file
+load_dotenv()
+
+# Access the GCP_PROJECT_ID variable
+project = os.getenv("GOOGLE_CLOUD_PROJECT")
+model_armor_id = os.getenv("MODEL_ARMOR_ID")
+
+# Add your project root to the system path to find the agent modules
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# from .prompts import return_instructions_root
+
+
+# --- Define the Callback Function ---
+# This is a simple model callback for safey guardrails
+def before_model_callback(
+    callback_context: CallbackContext, llm_request: LlmRequest
+) -> Optional[LlmResponse]:
+    """Filter out PII before sending to model."""
+    last_user_message = ""
+    if llm_request.contents and llm_request.contents[-1].role == "user":
+        if llm_request.contents[-1].parts:
+            last_user_message = llm_request.contents[-1].parts[0].text
+
+    # Simple PII detection (emails, phone numbers)
+    import re
+
+    # Check for email patterns
+    if re.search(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', last_user_message):
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="For privacy reasons, please don't include email addresses. Just let me know your vote (A, B, or C)."
+                    )
+                ],
+            )
+        )
+
+    # Check for phone numbers (simple pattern)
+    if re.search(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b', last_user_message):
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="For privacy reasons, please don't include phone numbers. Just let me know your vote (A, B, or C)."
+                    )
+                ],
+            )
+        )
+
+    # Check for SSN-like patterns
+    if re.search(r'\b\d{3}-\d{2}-\d{4}\b', last_user_message):
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="For privacy reasons, please don't include personal identification numbers. Just let me know your vote (A, B, or C)."
+                    )
+                ],
+            )
+        )
+
+    return None  # Allow message to proceed
+
+# # Load Model Armor client (local)
+# client = modelarmor_v1.ModelArmorClient(
+#     transport="rest",
+#     client_options={"api_endpoint": "modelarmor.us.rep.googleapis.com"},
+# )
+
+# For Agent Engine
+# client = modelarmor_v1.ModelArmorClient()
+
+
+def model_armor_analyze(prompt: str):
+    # project = os.getenv("GOOGLE_CLOUD_PROJECT")
+
+    user_prompt_data = modelarmor_v1.DataItem()
+    user_prompt_data.text = prompt
+
+    request = modelarmor_v1.SanitizeUserPromptRequest(
+        name=model_armor_id,
+        
+        user_prompt_data=user_prompt_data,
+    )
+    response = client.sanitize_user_prompt(request=request)
+
+    # Return both SDP (PII) and PI (Prompt Injection) results
+    return response.sanitization_result.filter_results.get(
+        "sdp"
+    ), response.sanitization_result.filter_results.get("pi")
+
+
+def comprehensive_before_model_guardrail(
+    callback_context: CallbackContext, llm_request: LlmRequest
+) -> Optional[LlmResponse]:
+    """
+    A single before_model_callback that checks for prompt injection, PII,
+    and specific keywords like 'salary'.
+    """
+    agent_name = callback_context.agent_name
+    print(f"[Callback] Comprehensive pre-model check for agent: {agent_name}")
+
+    last_user_message = ""
+    if llm_request.contents and llm_request.contents[-1].role == "user":
+        if llm_request.contents[-1].parts:
+            last_user_message = llm_request.contents[-1].parts[0].text
+    print(f"[Callback] Inspecting last user message: '{last_user_message}'")
+
+    # --- Check 1: Keyword-based Guardrail ---
+    if "SALARY" in last_user_message.upper():
+        print("[Callback] 'salary' keyword found. Blocking LLM call.")
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="I cannot answer questions about salaries. This query is against our policy."
+                    )
+                ],
+            )
+        )
+
+    # --- Check 2: Model Armor for Prompt Injection and PII ---
+    sdp_result, pi_result = model_armor_analyze(last_user_message)
+
+    # Check for Prompt Injection
+    if (
+        pi_result
+        and pi_result.pi_filter_result
+        and pi_result.pi_filter_result.attack_detected
+    ):
+        print("[Callback] Prompt Injection attack detected!")
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="I cannot fulfill this request. It appears to be a prompt injection attempt."
+                    )
+                ],
+            )
+        )
+
+    # Check for PII
+    if (
+        sdp_result
+        and sdp_result.sdp_filter_result
+        and sdp_result.sdp_filter_result.deidentify_result
+        and sdp_result.sdp_filter_result.deidentify_result.match_state.name
+        == "MATCH_FOUND"
+    ):
+        print("[Callback] PII detected in user query.")
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="Your query contains sensitive data (PII). I cannot proceed with this request."
+                    )
+                ],
+            )
+        )
+
+    # --- If all checks pass ---
+    print("[Callback] Query is safe. Proceeding with LLM call.")
+    return None
+
+
+def pii_scrubbing_callback(
+    callback_context: CallbackContext, llm_response: LlmResponse
+) -> Optional[LlmResponse]:
+    """Inspects the LLM response for PII and modifies it if necessary."""
+    print("[Callback] After model call. Inspecting agent's response for PII.")
+
+    # Access the agent's response text
+    agent_response_text = ""
+    if llm_response.content and llm_response.content.parts:
+        agent_response_text = llm_response.content.parts[0].text
+    print(f"[Callback] Agent response to inspect: '{agent_response_text}'")
+
+    # Use your Model Armor logic to analyze the agent's response
+    response_from_armor, _ = model_armor_analyze(agent_response_text)
+
+    # Check if Model Armor detected PII in the response
+    if (
+        response_from_armor
+        and response_from_armor.sdp_filter_result
+        and response_from_armor.sdp_filter_result.deidentify_result
+        and response_from_armor.sdp_filter_result.deidentify_result.match_state.name
+        == "MATCH_FOUND"
+    ):
+        print("[Callback] PII detected in agent's output. Scrubbing the response.")
+
+        # Create a new, sanitized LlmResponse
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="I cannot share this information as it may contain sensitive data."
+                    )
+                ],
+            )
+        )
+    else:
+        print("[Callback] No PII detected. Response is safe to send.")
+        # Return the original response as-is
+        return llm_response
+
+
+async def response_validation_callback(
+    callback_context: CallbackContext, llm_response: LlmResponse
+) -> Optional[LlmResponse]:
+    """
+    A comprehensive after_model_callback that validates the agent's output
+    using both a dedicated safety agent and a direct Model Armor PII check.
+    """
+    print("[Callback] After model call. Validating agent's output.")
+
+    # Access the agent's response text
+    agent_response_text = ""
+    if llm_response.content and llm_response.content.parts:
+        agent_response_text = llm_response.content.parts[0].text
+    print(f"[Callback] Agent response to validate: '{agent_response_text}'")
+
+    # Step 1: Call the safety_agent as a tool
+    # Use AgentTool to wrap your safety_agent
+    safety_agent_tool = AgentTool(agent=safety_agent)
+
+    # Call the safety_agent asynchronously with the LLM's response as the input
+    try:
+        safety_agent_output = await safety_agent_tool.run_async(
+            args={"request": agent_response_text}, tool_context=callback_context
+        )
+        print(f"[Callback] Safety agent output: '{safety_agent_output}'")
+
+    except Exception as e:
+        print(f"[Callback] Error calling safety agent: {e}")
+        # In case of an error, fall back to a safe response
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[
+                    types.Part(
+                        text="An internal safety issue occurred. I cannot provide a response at this time."
+                    )
+                ],
+            )
+        )
+
+    # Check if the safety_agent's response is the canned rejection message
+    canned_rejection_message = "I'm sorry, I cannot provide this information as it contains details that are not relevant to a customer's inquiry or are considered confidential."
+
+    if canned_rejection_message in safety_agent_output:
+        print("[Callback] Safety agent blocked the response.")
+        # Return the safety_agent's output directly
+        return LlmResponse(
+            content=types.Content(
+                role="model",
+                parts=[types.Part(text=safety_agent_output)],
+            )
+        )
+    else:
+        print("[Callback] Safety agent approved the response.")
+
+        return llm_response
+
+
