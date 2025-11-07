@@ -42,11 +42,40 @@ class Library:
 
         for book in self.books:
             if book.isbn == isbn:
-                return print(f" ISBN {isbn} corrisponds to {book}")
+                return book
         return None
 
     def checkout_book(self, isbn: str) -> bool:
+        book=self.find_book_by_isbn(isbn)
+
+        if book and not book.is_checked_out:
+            book.is_checked_out = True
+
+            print (f"succesSfully checked out '{book.title}'.")
+            return True
+
+    
+
+        if book and book.is_checked_out:
+            print(f"Error: '{book.title}' is already checked out.")
+        else:
+            print(f"Error: Book with ISBN {isbn} not found.")
+
+        return False
+
+        for books in self.books:
+            if books.isbn == isbn and books.is_checked_out == False:
+                return True
+            elif books.isbn == isbn and books.is_checked_out == True :
+                return False
+            else:
+                return False
+
+
+
+
         """
+        
         TODO: Implement this method
         Check out a book by ISBN if it's available.
 
