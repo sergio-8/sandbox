@@ -46,30 +46,27 @@ class Library:
         return None
 
     def checkout_book(self, isbn: str) -> bool:
-        book=self.find_book_by_isbn(isbn)
+        """Checks out a book by ISBN if it's available."""
+        book = self.find_book_by_isbn(isbn)
 
-        if book and not book.is_checked_out:
-            book.is_checked_out = True
-
-            print (f"succesSfully checked out '{book.title}'.")
-            return True
-
-    
-
-        if book and book.is_checked_out:
-            print(f"Error: '{book.title}' is already checked out.")
-        else:
+        # Guard Clause 1: Handle the case where the book doesn't exist.
+        if not book:
             print(f"Error: Book with ISBN {isbn} not found.")
+            return False
 
-        return False
+        # Guard Clause 2: Handle the case where the book is already checked out.
+        if book.is_checked_out:
+            print(f"Error: '{book.title}' is already checked out.")
+            return False
 
-        for books in self.books:
-            if books.isbn == isbn and books.is_checked_out == False:
-                return True
-            elif books.isbn == isbn and books.is_checked_out == True :
-                return False
-            else:
-                return False
+        # --- Success Path ---
+        # If we've gotten this far, the book exists and is available.
+        book.is_checked_out = True
+        print(f"Successfully checked out '{book.title}'.")
+        return True
+
+
+
 
 
 
@@ -85,9 +82,30 @@ class Library:
         Returns:
             True if successful, False if book not found or already checked out
         """
-        pass
+
 
     def return_book(self, isbn: str) -> bool:
+
+        book=self.find_book_by_isbn(isbn)
+
+        if not book:
+            print(f"Error: Book with ISBN {isbn} not found.")
+            return False
+
+        if not book.is_checked_out:
+            print(f"Error: '{book.title}' is not checked out.")
+            return False
+
+
+
+        book.is_checked_out = False
+        print (f"succesSfully returned '{book.title}'.")
+        return True
+
+
+
+
+
         """
         TODO: Implement this method
         Return a book by ISBN.
@@ -101,6 +119,9 @@ class Library:
         pass
 
     def list_available_books(self) -> list[Book]:
+        """Gets a list of all available (not checked out) books."""
+        return [book for book in self.books if not book.is_checked_out]
+
         """
         TODO: Implement this method
         Get a list of all available (not checked out) books.
@@ -111,6 +132,16 @@ class Library:
         pass
 
     def get_books_by_author(self, author: str) -> list[Book]:
+        return [book for book in self.books if book.author == author]
+
+
+        for author in  self.author:
+            if author is author:
+                lista_aut=[]
+                lista_aut.append(self.title)
+                print ()
+
+
         """
         TODO: Implement this method
         Find all books by a specific author.
@@ -153,7 +184,13 @@ if __name__ == "__main__":
     success = lib.checkout_book("789-012")
     print(f"  Success: {success}")
     print(f"  {lib.find_book_by_isbn('789-012')}\n")
-    
+
+    # Test returning a book
+    print("Returning 'Clean Code':")
+    success = lib.return_book("789-012")
+    print(f"  Success: {success}")
+    print(f"  {lib.find_book_by_isbn('789-012')}\n")
+
     # Test listing available books
     print("Available books:")
     for book in lib.list_available_books():
@@ -166,8 +203,3 @@ if __name__ == "__main__":
         print(f"  {book}")
     print()
     
-    # Test returning a book
-    print("Returning 'Clean Code':")
-    success = lib.return_book("789-012")
-    print(f"  Success: {success}")
-    print(f"  {lib.find_book_by_isbn('789-012')}\n")
