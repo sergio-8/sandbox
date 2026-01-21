@@ -4,3 +4,4 @@ llms/credentials
 /algos/__pycache__/ins_sort_redoux.cpython-37.pyc
 test_venv/
 llms/__pycache__/
+*.pyc
