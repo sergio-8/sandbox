@@ -12,9 +12,9 @@ load_dotenv()
 APP_NAME = "kaggle_test_agent"
 USER_ID = "test_user"
 SESSION_ID = "session_001"
-MODEL_NAME = "gemini-flash-latest"
+MODEL_NAME = "gemini-2.0-flash-001"
 
-# Initialize Agent
+# Initialize Agent (Keep at top level for deployment)
 agent = Agent(
     name="kaggle_researcher",
     model=MODEL_NAME,
@@ -22,27 +22,32 @@ agent = Agent(
     instruction="You are a helpful data science assistant. Provide concise and accurate info.",
 )
 
-# Setup Session and Runner
-session_service = InMemorySessionService()
-session = session_service.create_session(app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID)
-runner = Runner(agent=agent, app_name=APP_NAME, session_service=session_service)
-
-def chat_with_agent(query):
-    """Simple wrapper to interact with the agent."""
+async def chat_with_agent(runner, query):
+    """Interacts with the agent using the new async pattern."""
     print(f"User: {query}")
     
     content = types.Content(role='user', parts=[types.Part(text=query)])
-    events = runner.run(user_id=USER_ID, session_id=SESSION_ID, new_message=content)
-
-    for event in events:
+    # We use run_async to be consistent with modern ADK
+    async for event in runner.run_async(user_id=USER_ID, session_id=SESSION_ID, new_message=content):
         if event.is_final_response():
             response_text = event.content.parts[0].text
             print(f"Agent: {response_text}")
             return response_text
 
-if __name__ == "__main__":
+async def main():
     if not os.getenv("GOOGLE_API_KEY"):
         print("Error: GOOGLE_API_KEY not found. Please set it in your .env file.")
-    else:
-        query = input("Enter your query: ")
-        chat_with_agent(query)
+        return
+
+    # Setup Session and Runner inside main to avoid import side-effects
+    session_service = InMemorySessionService()
+    # Await the session creation to fix the RuntimeWarning
+    await session_service.create_session(app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID)
+    runner = Runner(agent=agent, app_name=APP_NAME, session_service=session_service)
+
+    query = input("Enter your query: ")
+    await chat_with_agent(runner, query)
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
