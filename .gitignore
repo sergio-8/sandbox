@@ -5,3 +5,18 @@ llms/credentials
 test_venv/
 llms/__pycache__/
 *.pyc
+
+# Virtual environments
+.venv/
+.venv1/
+venv_deploy/
+**/venv/
+
+# Node modules (if any)
+node_modules/
+
+# Cache
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
