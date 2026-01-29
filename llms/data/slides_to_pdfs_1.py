@@ -116,7 +116,7 @@ if __name__ == '__main__':
     #    It will look something like: https://docs.google.com/presentation/d/xxxxxxx_YOUR_ID_xxxxxxx/edit
     # 3. Paste that full URL below:
 
-    google_slides_url = "https://docs.google.com/presentation/d/1IEzcvdkg98XKLBMoLWFXAnLuazfelO4i5n0SfvM5kYU/edit?slide=id.g34415a9b632_0_165#slide=id.g34415a9b632_0_165"  # <--- PASTE YOUR FULL URL HERE
+    google_slides_url = "https://docs.google.com/presentation/d/xxxxxxx_YOUR_ID_xxxxxxx/edit"  # <--- PASTE YOUR FULL URL HERE
 
     if google_slides_url == "YOUR_GOOGLE_SLIDES_URL_HERE":
         print("Please update the 'google_slides_url' variable in the script with the actual Google Slides URL.")
