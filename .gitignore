@@ -4,3 +4,19 @@ llms/credentials
 /algos/__pycache__/ins_sort_redoux.cpython-37.pyc
 test_venv/
 llms/__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+.venv1/
+venv_deploy/
+**/venv/
+
+# Node modules (if any)
+node_modules/
+
+# Cache
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/

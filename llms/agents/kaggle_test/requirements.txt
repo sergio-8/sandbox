@@ -1,0 +1,4 @@
+google-adk
+google-cloud-aiplatform[agent_engines]
+google-genai
+python-dotenv
