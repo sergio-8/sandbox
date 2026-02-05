@@ -20,4 +20,4 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
-.vscode/
+.vscode/drive_downloads/
