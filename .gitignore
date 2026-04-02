@@ -24,4 +24,16 @@ htmlcov/
 
 
 # Scripts
-*.sh    
+*.sh
+
+# Virtual environments (added to resolve Git noise)
+**/.venv_*/
+devex/**/env/
+
+# IDE and Tooling
+.agent/
+.vscode/
+
+# Pip logs and output
+pip*
+=1.27.4
