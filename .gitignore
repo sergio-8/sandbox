@@ -37,3 +37,6 @@ devex/**/env/
 # Pip logs and output
 pip*
 =1.27.4
+
+# Environment files
+**/.env
