@@ -960,14 +960,14 @@ urllib3 = ["packaging", "urllib3"]
 
 [[package]]
 name = "google-cloud-aiplatform"
-version = "1.146.0"
+version = "1.147.0"
 description = "Vertex AI API client library"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "google_cloud_aiplatform-1.146.0-py2.py3-none-any.whl", hash = "sha256:bd1912841905c2c7b49cc65726aaa1c0cc41df8474ca427d2f8af09bb72c0e3d"},
-    {file = "google_cloud_aiplatform-1.146.0.tar.gz", hash = "sha256:3b95bc6c5a49b1341153b6e20c2d6139fde76a908c335116222db3bd496c4b51"},
+    {file = "google_cloud_aiplatform-1.147.0-py2.py3-none-any.whl", hash = "sha256:29f7ae020718d3c45094f0475464e06a97f81b1572bea150ae6a1b22c5f45997"},
+    {file = "google_cloud_aiplatform-1.147.0.tar.gz", hash = "sha256:b2e1b669ba37f02426e03eb13187eebf4cbfeaa0a3bfed37b5578abb375ab689"},
 ]
 
 [package.dependencies]
