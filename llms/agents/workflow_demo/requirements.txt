@@ -53,7 +53,7 @@ opentelemetry-semantic-conventions==0.54b0
 packaging==25.0
 pandas==2.2.3
 proto-plus==1.26.1
-protobuf==6.33.5
+protobuf==6.33.6
 pyasn1==0.6.3
 pyasn1_modules==0.4.2
 pycparser==2.22
