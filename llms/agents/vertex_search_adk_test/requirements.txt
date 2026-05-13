@@ -17,7 +17,7 @@ google-api-python-client==2.169.0
 google-auth==2.40.1
 google-auth-httplib2==0.2.0
 google-auth-oauthlib==1.2.2
-google-cloud-aiplatform==1.151.0
+google-cloud-aiplatform==1.152.0
 google-cloud-bigquery==3.32.0
 google-cloud-core==2.4.3
 google-cloud-resource-manager==1.14.2
@@ -62,10 +62,10 @@ pydantic_core==2.33.2
 pyparsing==3.2.3
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
-python-multipart==0.0.27
+python-multipart==0.0.28
 pytz==2025.2
 PyYAML==6.0.2
-requests==2.33.1
+requests==2.34.0
 requests-oauthlib==2.0.0
 rsa==4.9.1
 shapely==2.1.0
