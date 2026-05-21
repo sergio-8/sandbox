@@ -174,15 +174,15 @@ wheels = [
 
 [[package]]
 name = "authlib"
-version = "1.7.0"
+version = "1.7.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cryptography" },
     { name = "joserfc" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/82/4d0603f30c1b4629b1f091bb266b0d7986434891d6940a8c87f8098db24e/authlib-1.7.0.tar.gz", hash = "sha256:b3e326c9aa9cc3ea95fe7d89fd880722d3608da4d00e8a27e061e64b48d801d5", size = 175890, upload-time = "2026-04-18T11:00:28.559Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3c/f2/e05664d5275ce811fd4e9df0a2b3f0086ee19a8a80358d95499fa82fd50c/authlib-1.7.1.tar.gz", hash = "sha256:8c09b0f9d080c823e594b52316af70f79a1fa4eed64d0363a076233c04ef063a", size = 175884, upload-time = "2026-05-04T08:11:25.033Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ca/48/c954218b2a250e23f178f10167c4173fecb5a75d2c206f0a67ba58006c26/authlib-1.7.0-py2.py3-none-any.whl", hash = "sha256:e36817afb02f6f0b6bf55f150782499ddd6ddf44b402bb055d3263cc65ac9ae0", size = 258779, upload-time = "2026-04-18T11:00:26.64Z" },
+    { url = "https://files.pythonhosted.org/packages/e0/82/730650ee5e5b598b7bfdc291b784bc2f6fe02a5671695485403365101088/authlib-1.7.1-py2.py3-none-any.whl", hash = "sha256:8470f4aa6b5590ac41bd81d6e6ee12448ce36a0da0af19bbed69fb53fb4e8ad9", size = 258826, upload-time = "2026-05-04T08:11:23.208Z" },
 ]
 
 [[package]]
@@ -1410,11 +1410,11 @@ wheels = [
 
 [[package]]
 name = "idna"
-version = "3.12"
+version = "3.15"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/22/12/2948fbe5513d062169bd91f7d7b1cd97bc8894f32946b71fa39f6e63ca0c/idna-3.12.tar.gz", hash = "sha256:724e9952cc9e2bd7550ea784adb098d837ab5267ef67a1ab9cf7846bdbdd8254", size = 194350, upload-time = "2026-04-21T13:32:48.916Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/77/7b3966d0b9d1d31a36ddf1746926a11dface89a83409bf1483f0237aa758/idna-3.15.tar.gz", hash = "sha256:ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc", size = 199245, upload-time = "2026-05-12T22:45:57.011Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/b2/acc33950394b3becb2b664741a0c0889c7ef9f9ffbfa8d47eddb53a50abd/idna-3.12-py3-none-any.whl", hash = "sha256:60ffaa1858fac94c9c124728c24fcde8160f3fb4a7f79aa8cdd33a9d1af60a67", size = 68634, upload-time = "2026-04-21T13:32:47.403Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/23/408243171aa9aaba178d3e2559159c24c1171a641aa83b67bdd3394ead8e/idna-3.15-py3-none-any.whl", hash = "sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8", size = 72340, upload-time = "2026-05-12T22:45:55.733Z" },
 ]
 
 [[package]]
@@ -3124,7 +3124,7 @@ requires-dist = [
     { name = "google-cloud-aiplatform", extras = ["evaluation", "agent-engines"], specifier = ">=1.130.0" },
     { name = "google-cloud-logging", specifier = ">=3.12.0,<4.0.0" },
     { name = "opentelemetry-instrumentation-google-genai", specifier = ">=0.1.0,<1.0.0" },
-    { name = "protobuf", specifier = ">=6.31.1,<7.0.0" },
+    { name = "protobuf", specifier = ">=6.31.1,<8.0.0" },
     { name = "ruff", marker = "extra == 'lint'", specifier = ">=0.4.6,<1.0.0" },
     { name = "ty", marker = "extra == 'lint'", specifier = ">=0.0.1a0" },
 ]
@@ -3133,7 +3133,7 @@ provides-extras = ["eval", "lint"]
 [package.metadata.requires-dev]
 dev = [
     { name = "nest-asyncio", specifier = ">=1.6.0,<2.0.0" },
-    { name = "pytest", specifier = ">=8.3.4,<9.0.0" },
+    { name = "pytest", specifier = ">=8.3.4,<10.0.0" },
     { name = "pytest-asyncio", specifier = ">=0.23.8,<1.0.0" },
 ]
 
