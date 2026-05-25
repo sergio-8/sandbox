@@ -7,7 +7,8 @@ class Solution:
         for char in s.replace(" ","").lower() :
             if char.isalnum():
                 dir.append(char)
-                indir.insert(0,char)
+                indir.append(char)
+        indir.reverse()
         if dir == indir:
             return True
         else:
