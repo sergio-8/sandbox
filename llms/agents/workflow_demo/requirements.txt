@@ -1,12 +1,14 @@
 aiozoneinfo==0.2.3
 annotated-types==0.7.0
 anyio==4.9.0
+Authlib==1.6.9
 Authlib==1.6.12
 cachetools==5.5.2
 certifi==2025.4.26
 cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.0
+cryptography==46.0.7
 cryptography==48.0.0
 Deprecated==1.2.18
 docstring_parser==0.16
