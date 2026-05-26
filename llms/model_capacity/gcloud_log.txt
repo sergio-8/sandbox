@@ -1,0 +1,68 @@
+Using endpoint [https://us-central1-aiplatform.googleapis.com/]
+=======================
+==== request start ====
+uri: https://us-central1-aiplatform.googleapis.com/v1beta1/publishers/*/models?alt=json&filter=is_hf_wildcard%28false%29&listAllVersions=True
+method: GET
+== headers start ==
+b'accept': b'application/json'
+b'accept-encoding': b'gzip, deflate'
+b'authorization': --- Token Redacted ---
+b'content-length': b'0'
+b'user-agent': b'google-cloud-sdk gcloud/538.0.0 command/gcloud.ai.model-garden.models.list invocation-id/5d26658b73ee42a5b47db7bbbf896236 environment/None environment-version/None client-os/MACOSX client-os-ver/25.3.0 client-pltf-arch/arm interactive/False from-script/False python/3.12.11 term/xterm-256color (Macintosh; Intel Mac OS X 25.3.0)'
+b'x-goog-api-client': b'cred-type/u'
+== headers end ==
+== body start ==
+
+== body end ==
+==== request end ====
+---- response start ----
+status: 403
+-- headers start --
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+Content-Encoding: gzip
+Content-Type: application/json; charset=UTF-8
+Date: Tue, 21 Apr 2026 02:33:46 GMT
+Server: ESF
+Transfer-Encoding: chunked
+Vary: Origin, X-Origin, Referer
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+-- headers end --
+-- body start --
+{
+  "error": {
+    "code": 403,
+    "message": "Your application is authenticating by using local Application Default Credentials. The aiplatform.googleapis.com API requires a quota project, which is not set by default. To learn how to set your quota project, see https://cloud.google.com/docs/authentication/adc-troubleshooting/user-creds .",
+    "status": "PERMISSION_DENIED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "SERVICE_DISABLED",
+        "domain": "googleapis.com",
+        "metadata": {
+          "consumer": "projects/YOUR_PROJECT_NUMBER",
+          "service": "aiplatform.googleapis.com"
+        }
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+        "locale": "en-US",
+        "message": "Your application is authenticating by using local Application Default Credentials. The aiplatform.googleapis.com API requires a quota project, which is not set by default. To learn how to set your quota project, see https://cloud.google.com/docs/authentication/adc-troubleshooting/user-creds ."
+      }
+    ]
+  }
+}
+
+-- body end --
+total round trip time (request+response): 0.428 secs
+---- response end ----
+----------------------
+ERROR: (gcloud.ai.model-garden.models.list) [YOUR_EMAIL@gmail.com] does not have permission to access publishers instance [*] (or it may not exist): Your application is authenticating by using local Application Default Credentials. The aiplatform.googleapis.com API requires a quota project, which is not set by default. To learn how to set your quota project, see https://cloud.google.com/docs/authentication/adc-troubleshooting/user-creds . This command is authenticated as YOUR_EMAIL@gmail.com which is the active account specified by the [core/account] property.
+Your application is authenticating by using local Application Default Credentials. The aiplatform.googleapis.com API requires a quota project, which is not set by default. To learn how to set your quota project, see https://cloud.google.com/docs/authentication/adc-troubleshooting/user-creds .
+- '@type': type.googleapis.com/google.rpc.ErrorInfo
+  domain: googleapis.com
+  metadata:
+    consumer: projects/YOUR_PROJECT_NUMBER
+    service: aiplatform.googleapis.com
+  reason: SERVICE_DISABLED
