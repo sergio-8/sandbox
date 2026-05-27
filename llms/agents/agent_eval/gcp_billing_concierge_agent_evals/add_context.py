@@ -106,8 +106,8 @@ def get_context(prompt):
 
 
 def main():
-    input_file = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/golden_dataset.json"
-    output_file = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/golden_dataset_with_context.json"
+    input_file = "[your-home-directory]/golden_dataset.json"
+    output_file = "[your-home-directory]/golden_dataset_with_context.json"
 
     with open(input_file, "r") as f:
         dataset = json.load(f)
