@@ -1,6 +1,6 @@
 # Golden Evaluation Dataset
 
-This dataset contains ground-truth questions and answers derived from the BigQuery billing table `[your-project-id].billing_sergio_test.billing_sample_table`.
+This dataset contains ground-truth questions and answers derived from the BigQuery billing table `[your-project-id].your_billing_dataset.your_billing_table`.
 
 | ID | Question | Ground Truth Answer |
 |---|---|---|
