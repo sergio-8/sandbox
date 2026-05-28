@@ -5,22 +5,22 @@ class Solution:
         
         openers= ["(", "[", "{"]
         closers= [")","]", "}" ]
+        open={"(", "[", "{"}
 
         stack = []
         match = dict(zip(closers, openers))
         
         
         for item in s:
-            if item in openers:
+            if item in open:
                 stack.append(item)
 
-            elif item in closers:
+            elif item in match:
                 if not stack or stack[-1] != match[item]:
                     return False
                 stack.pop()
 
-        return len(stack)==0     
-
+        return len(stack)==0  
 
 sol = Solution()
 print(sol.isValid("()[]{}")) 
