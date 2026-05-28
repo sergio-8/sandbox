@@ -1,18 +1,23 @@
 
 
 class Solution:
+
+    openers= ["(", "[", "{"]
+    closers= [")","]", "}" ]
+    opener = {"(", "[", "{"}
+    
     def isValid(self, s: str) -> bool:
         
-        openers= ["(", "[", "{"]
-        closers= [")","]", "}" ]
-        opener = {"(", "[", "{"}
+        if len(s)%2!=0:
+            return False
+
 
         stack = []
-        match = dict(zip(closers, openers))
+        match = dict(zip(self.closers, self.openers))
         
         
         for item in s:
-            if item in opener:
+            if item in self.opener:
                 stack.append(item)
 
             elif item in match:
@@ -27,3 +32,4 @@ print(sol.isValid("()[]{}"))
 print(sol.isValid("(]")) 
 print(sol.isValid("{[]}")) 
 print(sol.isValid(s="([{}])"))
+print(sol.isValid(s="([{}]))"))
