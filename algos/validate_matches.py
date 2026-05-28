@@ -5,14 +5,14 @@ class Solution:
         
         openers= ["(", "[", "{"]
         closers= [")","]", "}" ]
-        open={"(", "[", "{"}
+        opener = {"(", "[", "{"}
 
         stack = []
         match = dict(zip(closers, openers))
         
         
         for item in s:
-            if item in open:
+            if item in opener:
                 stack.append(item)
 
             elif item in match:
