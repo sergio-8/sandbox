@@ -7,7 +7,7 @@ class Solution:
         nums.sort()
         print(f"Sorted nums: {nums}")
         print(f"Length of list minus 1 is: {len(nums) - 1}")
-        print(f"The range to check is: {len(range(len(nums) - 1))}")
+        print(f"The range to check is: {range(len(nums) - 1)}")
         for x in range(len(nums) - 1):
             if nums[x] == nums[x+1]:
                 return True
