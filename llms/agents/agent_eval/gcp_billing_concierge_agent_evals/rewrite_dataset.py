@@ -36,8 +36,8 @@ def get_new_cost(service):
     return None
 
 def main():
-    input_file = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/golden_dataset_with_context.json"
-    output_file = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/golden_dataset_products_only.json"
+    input_file = "[your-home-directory]/golden_dataset_with_context.json"
+    output_file = "[your-home-directory]/golden_dataset_products_only.json"
 
     with open(input_file, "r") as f:
         dataset = json.load(f)
