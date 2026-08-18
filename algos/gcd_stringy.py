@@ -1,3 +1,4 @@
+from math import gcd
 import math 
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
@@ -28,4 +29,4 @@ print(sol.gcdOfStrings("ABABAB", "ABAB"))
 print(sol.gcdOfStrings("LEET", "CODE")) 
 
 
-    
+
