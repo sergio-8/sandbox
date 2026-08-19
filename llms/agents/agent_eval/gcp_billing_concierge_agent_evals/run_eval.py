@@ -44,7 +44,7 @@ def reasoning_engine_model(prompt):
     return full_response
 
 # Load dataset
-dataset_path = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/golden_dataset_with_context.json"
+dataset_path = "[your-home-directory]/golden_dataset_with_context.json"
 
 print(f"Loading dataset from {dataset_path}")
 with open(dataset_path, 'r') as f:
@@ -90,6 +90,6 @@ print("\nDetailed Metrics Table:")
 print(result.metrics_table.head())
 
 # Save results
-output_path = "[your-home-directory]/.gemini/jetski/brain/[your-conversation-id]/scratch/eval_results.json"
+output_path = "[your-home-directory]/eval_results.json"
 result.metrics_table.to_json(output_path, orient='records', indent=2)
 print(f"\nResults saved to {output_path}")
