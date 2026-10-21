@@ -3,7 +3,7 @@ anyio==4.15.1
 Authlib==1.6.12
 Authlib==1.7.2
 cachetools==5.5.2
-certifi==2025.4.26
+certifi==2026.10.19
 cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.0
@@ -19,8 +19,8 @@ google-api-python-client==2.169.0
 google-auth==2.40.1
 google-auth-httplib2==0.2.0
 google-auth-oauthlib==1.2.2
-google-cloud-aiplatform==2.5.0
-google-cloud-aiplatform==2.5.0
+google-cloud-aiplatform==2.6.0
+google-cloud-aiplatform==2.6.0
 google-cloud-bigquery==3.32.0
 google-cloud-core==2.4.3
 google-cloud-resource-manager==1.14.2
