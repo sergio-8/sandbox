@@ -4,7 +4,7 @@ anyio==4.15.1
 Authlib==1.6.12
 Authlib==1.6.12
 cachetools==5.5.2
-certifi==2025.4.26
+certifi==2026.10.19
 cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.0
