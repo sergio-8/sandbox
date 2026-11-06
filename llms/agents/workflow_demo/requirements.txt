@@ -1,8 +1,8 @@
 aiozoneinfo==0.2.3
 annotated-types==0.7.0
 anyio==4.15.1
-Authlib==1.9.1
-Authlib==1.9.1
+Authlib==1.9.5
+Authlib==1.9.5
 cachetools==5.5.2
 certifi==2026.10.23
 cffi==1.17.1
@@ -46,8 +46,8 @@ importlib_metadata==8.6.1
 mcp==2.3.0
 numpy==2.2.5
 oauth2client==4.1.3
-oauthlib==4.0.0
-opentelemetry-api==1.45.1
+oauthlib==4.0.1
+opentelemetry-api==1.45.2
 opentelemetry-exporter-gcp-trace==1.9.0
 opentelemetry-resourcedetector-gcp==1.9.0a0
 opentelemetry-sdk==1.33.0
@@ -56,7 +56,7 @@ packaging==25.0
 pandas==2.2.3
 proto-plus==1.26.1
 protobuf==6.33.6
-pyasn1==0.6.4
+pyasn1==0.6.5
 pyasn1_modules==0.4.2
 pycparser==2.22
 pydantic==2.11.4
