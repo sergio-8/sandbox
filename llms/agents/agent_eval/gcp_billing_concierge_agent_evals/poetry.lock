@@ -269,6 +269,48 @@ files = [
 ]
 
 [[package]]
+name = "boto3"
+version = "1.44.3"
+description = "The AWS SDK for Python (Boto3)"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "boto3-1.44.3-py3-none-any.whl", hash = "sha256:8c9c4844c7ce184494b102983696d6cdb09f5307ec7f238ca4ad5849fb14e26b"},
+    {file = "boto3-1.44.3.tar.gz", hash = "sha256:bba566b5cba78db05c5f6c44d219c8f6fb2cd2b923106f767289e4cd0b87b093"},
+]
+
+[package.dependencies]
+botocore = ">=1.44.3,<1.45.0"
+jmespath = ">=0.7.1,<2.0.0"
+s3transfer = ">=0.19.0,<0.20.0"
+
+[package.extras]
+crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
+
+[[package]]
+name = "botocore"
+version = "1.44.3"
+description = "Low-level, data-driven core of boto 3."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "botocore-1.44.3-py3-none-any.whl", hash = "sha256:793eac2a7ca167e9376b136cf000e1675e9ffe8d7ec609160cc1ee00b93ace28"},
+    {file = "botocore-1.44.3.tar.gz", hash = "sha256:44d86fff55ce2d014bd72183ebc164b21b36598253b8234d4f59e8600e09b8b3"},
+]
+
+[package.dependencies]
+jmespath = ">=0.7.1,<2.0.0"
+python-dateutil = ">=2.1,<3.0.0"
+urllib3 = ">=1.25.4,!=2.2.0,<3"
+
+[package.extras]
+crt = ["awscrt (==0.38.0)"]
+
+[[package]]
 name = "certifi"
 version = "2026.10.23"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -1010,14 +1052,14 @@ urllib3 = ["packaging", "urllib3"]
 
 [[package]]
 name = "google-cloud-aiplatform"
-version = "2.7.0"
+version = "2.9.0"
 description = "Vertex AI API client library"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "google_cloud_aiplatform-2.7.0-py2.py3-none-any.whl", hash = "sha256:156ede4a6c304119195dbdaedaba8c33872f6d80b6525482dccb95f76405bd31"},
-    {file = "google_cloud_aiplatform-2.7.0.tar.gz", hash = "sha256:af89c8b7ff8bfaa3361a4d88224a886e8d2a9f22853d4e3c5d047e46367b6008"},
+    {file = "google_cloud_aiplatform-2.9.0-py2.py3-none-any.whl", hash = "sha256:2cbe65abbe7c229b6bf8d48ec0c9e449b3f7053e26da2be9d59d6eb5e3bf25c8"},
+    {file = "google_cloud_aiplatform-2.9.0.tar.gz", hash = "sha256:054b6cb76b5e22bad2265e28f15233cec0e153a50c93fb26fe1b28eafc4740b0"},
 ]
 
 [package.dependencies]
@@ -1035,10 +1077,7 @@ google-cloud-storage = [
 ]
 google-genai = {version = ">=1.66.0,<3.0.0", markers = "python_version >= \"3.10\""}
 jsonschema = {version = "*", optional = true, markers = "extra == \"evaluation\""}
-litellm = [
-    {version = ">=1.83.7,<1.97.0", optional = true, markers = "python_version < \"3.14\" and extra == \"evaluation\""},
-    {version = ">=1.93.0,<1.97.0", optional = true, markers = "python_version == \"3.14\" and extra == \"evaluation\""},
-]
+litellm = {version = ">=1.106.5,!=1.107.0,<1.110.0", optional = true, markers = "python_version < \"3.15\" and extra == \"evaluation\""}
 opentelemetry-exporter-otlp-proto-http = {version = "<2", optional = true, markers = "extra == \"reasoningengine\""}
 opentelemetry-instrumentation-google-genai = {version = ">=0.3b0,<1.0.0", optional = true, markers = "extra == \"reasoningengine\""}
 opentelemetry-resourcedetector-gcp = {version = ">=1.5.0.dev0", optional = true, markers = "extra == \"reasoningengine\""}
@@ -1067,8 +1106,8 @@ autologging = ["mlflow (>=1.27.0) ; python_version >= \"3.13\" and python_versio
 cloud-profiler = ["tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "werkzeug (>=2.0.0,<4.0.0)"]
 datasets = ["pyarrow (>=10.0.1) ; python_version == \"3.10\"", "pyarrow (>=10.0.1) ; python_version == \"3.11\"", "pyarrow (>=14.0.0) ; python_version >= \"3.12\"", "pyarrow (>=3.0.0,<8.0.0) ; python_version < \"3.10\""]
 endpoint = ["requests (>=2.28.1)", "requests-toolbelt (<=1.0.0)"]
-evaluation = ["jsonschema", "litellm (>=1.83.7,<1.97.0) ; python_version < \"3.14\"", "litellm (>=1.93.0,<1.97.0) ; python_version == \"3.14\"", "pandas (>=1.0.0)", "pyyaml", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "tqdm (>=4.23.0)"]
-full = ["docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0) ; python_version < \"3.13\"", "fastapi (>=0.71.0,<=0.124.4)", "google-cloud-bigquery", "google-cloud-bigquery-storage", "google-vizier (>=0.1.6)", "httpx (>=0.23.0,<=0.28.1)", "immutabledict", "jsonschema", "lit-nlp (==0.4.0) ; python_version < \"3.13\"", "litellm (>=1.83.7,<1.97.0) ; python_version < \"3.14\"", "litellm (>=1.93.0,<1.97.0) ; python_version == \"3.14\"", "mlflow (>=1.27.0) ; python_version >= \"3.13\" and python_version < \"3.15\"", "mlflow (>=1.27.0,<=2.16.0) ; python_version < \"3.13\"", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "pyarrow (>=10.0.1) ; python_version == \"3.10\"", "pyarrow (>=10.0.1) ; python_version == \"3.11\"", "pyarrow (>=14.0.0) ; python_version >= \"3.12\"", "pyarrow (>=3.0.0,<8.0.0) ; python_version < \"3.10\"", "pyarrow (>=6.0.1)", "pyyaml", "pyyaml (>=5.3.1,<7)", "ray[default] (>=2.4,<2.5 || >=2.9.dev0,!=2.9.0,!=2.9.1,!=2.9.2,<2.10 || ==2.33.* || >=2.42.dev0,<=2.42.0) ; python_version < \"3.11\"", "ray[default] (>=2.5,<=2.47.1) ; python_version == \"3.11\"", "requests (>=2.28.1)", "requests-toolbelt (<=1.0.0)", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "starlette (>=0.17.1)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tqdm (>=4.23.0)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)", "werkzeug (>=2.0.0,<4.0.0)"]
+evaluation = ["jsonschema", "litellm (>=1.106.5,!=1.107.0,<1.110.0) ; python_version < \"3.15\"", "pandas (>=1.0.0)", "pyyaml", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "tqdm (>=4.23.0)"]
+full = ["docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0) ; python_version < \"3.13\"", "fastapi (>=0.71.0,<=0.124.4)", "google-cloud-bigquery", "google-cloud-bigquery-storage", "google-vizier (>=0.1.6)", "httpx (>=0.23.0,<=0.28.1)", "immutabledict", "jsonschema", "lit-nlp (==0.4.0) ; python_version < \"3.13\"", "litellm (>=1.106.5,!=1.107.0,<1.110.0) ; python_version < \"3.15\"", "mlflow (>=1.27.0) ; python_version >= \"3.13\" and python_version < \"3.15\"", "mlflow (>=1.27.0,<=2.16.0) ; python_version < \"3.13\"", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "pyarrow (>=10.0.1) ; python_version == \"3.10\"", "pyarrow (>=10.0.1) ; python_version == \"3.11\"", "pyarrow (>=14.0.0) ; python_version >= \"3.12\"", "pyarrow (>=3.0.0,<8.0.0) ; python_version < \"3.10\"", "pyarrow (>=6.0.1)", "pyyaml", "pyyaml (>=5.3.1,<7)", "ray[default] (>=2.4,<2.5 || >=2.9.dev0,!=2.9.0,!=2.9.1,!=2.9.2,<2.10 || ==2.33.* || >=2.42.dev0,<=2.42.0) ; python_version < \"3.11\"", "ray[default] (>=2.5,<=2.47.1) ; python_version == \"3.11\"", "requests (>=2.28.1)", "requests-toolbelt (<=1.0.0)", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "starlette (>=0.17.1)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tqdm (>=4.23.0)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)", "werkzeug (>=2.0.0,<4.0.0)"]
 langchain = ["langchain (>=1.0.0,<2.0.0)", "langchain-classic", "langchain-core (>=1.0.0,<2.0.0)", "langchain-google-genai (>=4.0.0,<4.2.3)", "langgraph (>=1.0.0,<2.0.0)", "openinference-instrumentation-langchain (>=0.1.19,<0.2)"]
 langchain-testing = ["absl-py", "aiohttp", "cloudpickle (>=3.0,<4.0)", "langchain (>=1.0.0,<2.0.0)", "langchain-classic", "langchain-core (>=1.0.0,<2.0.0)", "langchain-google-genai (>=4.0.0,<4.2.3)", "langgraph (>=1.0.0,<2.0.0)", "openinference-instrumentation-langchain (>=0.1.19,<0.2)", "opentelemetry-exporter-otlp-proto-http (<2)", "opentelemetry-instrumentation-google-genai (>=0.3b0,<1.0.0)", "opentelemetry-resourcedetector-gcp (>=1.5.0.dev0)", "opentelemetry-sdk (<2)", "pydantic (>=2.11.1,<3)", "pytest-xdist", "typing_extensions"]
 lit = ["explainable-ai-sdk (>=1.0.0) ; python_version < \"3.13\"", "lit-nlp (==0.4.0) ; python_version < \"3.13\"", "pandas (>=1.0.0)", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\""]
@@ -1082,8 +1121,8 @@ ray = ["google-cloud-bigquery", "google-cloud-bigquery-storage", "immutabledict"
 ray-testing = ["google-cloud-bigquery", "google-cloud-bigquery-storage", "immutabledict", "pandas (>=1.0.0)", "pyarrow (>=6.0.1)", "pytest-xdist", "ray[default] (>=2.4,<2.5 || >=2.9.dev0,!=2.9.0,!=2.9.1,!=2.9.2,<2.10 || ==2.33.* || >=2.42.dev0,<=2.42.0) ; python_version < \"3.11\"", "ray[default] (>=2.5,<=2.47.1) ; python_version == \"3.11\"", "ray[train]", "scikit-learn (<1.6.0)", "tensorflow ; python_version < \"3.13\"", "torch (>=2.0.0,<2.1.0)", "xgboost", "xgboost_ray"]
 reasoningengine = ["aiohttp", "cloudpickle (>=3.0,<4.0)", "opentelemetry-exporter-otlp-proto-http (<2)", "opentelemetry-instrumentation-google-genai (>=0.3b0,<1.0.0)", "opentelemetry-resourcedetector-gcp (>=1.5.0.dev0)", "opentelemetry-sdk (<2)", "pydantic (>=2.11.1,<3)", "typing_extensions"]
 tensorboard = ["tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "werkzeug (>=2.0.0,<4.0.0)"]
-testing = ["Pillow", "aiohttp", "bigframes ; python_version >= \"3.10\" and python_version < \"3.14\"", "docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0) ; python_version < \"3.13\"", "fastapi (>=0.71.0,<=0.124.4)", "google-api-core (>=2.27.0,<3.0.0)", "google-cloud-bigquery", "google-cloud-bigquery-storage", "google-vizier (>=0.1.6)", "google-vizier (>=0.1.6)", "grpcio-testing", "grpcio-tools (>=1.63.0) ; python_version >= \"3.13\"", "httpx (>=0.23.0,<=0.28.1)", "immutabledict", "immutabledict", "ipython", "jinja2", "jsonschema", "kfp (>=2.6.0,<3.0.0) ; python_version < \"3.13\"", "lit-nlp (==0.4.0) ; python_version < \"3.13\"", "litellm (>=1.83.7,<1.97.0) ; python_version < \"3.14\"", "litellm (>=1.93.0,<1.97.0) ; python_version == \"3.14\"", "mlflow (>=1.27.0) ; python_version >= \"3.13\" and python_version < \"3.15\"", "mlflow (>=1.27.0,<=2.16.0) ; python_version < \"3.13\"", "mock", "nltk", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "protobuf (<=5.29.4) ; python_version < \"3.14\"", "protobuf (>=5.29.4) ; python_version >= \"3.14\"", "pyarrow (>=10.0.1) ; python_version == \"3.10\"", "pyarrow (>=10.0.1) ; python_version == \"3.11\"", "pyarrow (>=14.0.0) ; python_version >= \"3.12\"", "pyarrow (>=3.0.0,<8.0.0) ; python_version < \"3.10\"", "pyarrow (>=6.0.1)", "pytest-asyncio", "pytest-cov", "pytest-xdist", "pyyaml", "pyyaml (>=5.3.1,<7)", "ray[default] (>=2.4,<2.5 || >=2.9.dev0,!=2.9.0,!=2.9.1,!=2.9.2,<2.10 || ==2.33.* || >=2.42.dev0,<=2.42.0) ; python_version < \"3.11\"", "ray[default] (>=2.5,<=2.47.1) ; python_version == \"3.11\"", "requests (>=2.28.1)", "requests-toolbelt (<=1.0.0)", "requests-toolbelt (<=1.0.0)", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "sentencepiece (>=0.2.0) ; python_version < \"3.15\"", "starlette (>=0.17.1)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorflow (==2.14.1) ; python_version <= \"3.11\"", "tensorflow (==2.19.0) ; python_version > \"3.11\" and python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "torch (>=2.0.0,<2.1.0) ; python_version <= \"3.11\"", "torch (>=2.2.0) ; python_version > \"3.11\" and python_version < \"3.13\"", "tqdm (>=4.23.0)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)", "werkzeug (>=2.0.0,<4.0.0)", "werkzeug (>=2.0.0,<4.0.0)", "xgboost"]
-tokenization = ["sentencepiece (>=0.2.0)"]
+testing = ["Pillow", "aiohttp", "bigframes ; python_version >= \"3.10\" and python_version < \"3.14\"", "docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0) ; python_version < \"3.13\"", "fastapi (>=0.71.0,<=0.124.4)", "google-api-core (>=2.27.0,<3.0.0)", "google-cloud-bigquery", "google-cloud-bigquery-storage", "google-vizier (>=0.1.6)", "google-vizier (>=0.1.6)", "grpcio-testing", "grpcio-tools (>=1.63.0) ; python_version >= \"3.13\"", "httpx (>=0.23.0,<=0.28.1)", "immutabledict", "immutabledict", "ipython", "jinja2", "jsonschema", "kfp (>=2.6.0,<3.0.0) ; python_version < \"3.13\"", "lit-nlp (==0.4.0) ; python_version < \"3.13\"", "litellm (>=1.106.5,!=1.107.0,<1.110.0) ; python_version < \"3.15\"", "mlflow (>=1.27.0) ; python_version >= \"3.13\" and python_version < \"3.15\"", "mlflow (>=1.27.0,<=2.16.0) ; python_version < \"3.13\"", "mock", "nltk", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "protobuf (<=5.29.4) ; python_version < \"3.14\"", "protobuf (>=5.29.4) ; python_version >= \"3.14\"", "pyarrow (>=10.0.1) ; python_version == \"3.10\"", "pyarrow (>=10.0.1) ; python_version == \"3.11\"", "pyarrow (>=14.0.0) ; python_version >= \"3.12\"", "pyarrow (>=3.0.0,<8.0.0) ; python_version < \"3.10\"", "pyarrow (>=6.0.1)", "pytest-asyncio", "pytest-cov", "pytest-xdist", "pyyaml", "pyyaml (>=5.3.1,<7)", "ray[default] (>=2.4,<2.5 || >=2.9.dev0,!=2.9.0,!=2.9.1,!=2.9.2,<2.10 || ==2.33.* || >=2.42.dev0,<=2.42.0) ; python_version < \"3.11\"", "ray[default] (>=2.5,<=2.47.1) ; python_version == \"3.11\"", "requests (>=2.28.1)", "requests-toolbelt (<=1.0.0)", "requests-toolbelt (<=1.0.0)", "ruamel.yaml", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn (<1.6.0) ; python_version <= \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "scikit-learn ; python_version > \"3.10\"", "sentencepiece (>=0.2.0,<0.2.3) ; python_version < \"3.15\"", "starlette (>=0.17.1)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorboard-plugin-profile (>=2.4.0,<2.18.0)", "tensorflow (==2.14.1) ; python_version <= \"3.11\"", "tensorflow (==2.19.0) ; python_version > \"3.11\" and python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\"", "torch (>=2.0.0,<2.1.0) ; python_version <= \"3.11\"", "torch (>=2.2.0) ; python_version > \"3.11\" and python_version < \"3.13\"", "tqdm (>=4.23.0)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)", "werkzeug (>=2.0.0,<4.0.0)", "werkzeug (>=2.0.0,<4.0.0)", "xgboost"]
+tokenization = ["sentencepiece (>=0.2.0,<0.2.3)"]
 vizier = ["google-vizier (>=0.1.6)"]
 xai = ["tensorflow (>=2.3.0,<3.0.0) ; python_version < \"3.13\""]
 
@@ -1425,6 +1464,23 @@ files = [
 ]
 
 [[package]]
+name = "h2"
+version = "4.4.1"
+description = "Pure-Python HTTP/2 protocol implementation"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "h2-4.4.1-py3-none-any.whl", hash = "sha256:0e25f1462b23c9cb82d9eb02e28bc706dac2a68cb457c6a0d74d63c8a2a5d0e6"},
+    {file = "h2-4.4.1.tar.gz", hash = "sha256:4e866ffb1a869ae14dd9b5e6beb5c24a13da0495ad72b65925ded182521c1516"},
+]
+
+[package.dependencies]
+hpack = ">=4.2,<5"
+hyperframe = ">=6.1,<7"
+
+[[package]]
 name = "hf-xet"
 version = "1.4.3"
 description = "Fast transfer of large files with the Hugging Face Hub."
@@ -1464,6 +1520,19 @@ files = [
 tests = ["pytest"]
 
 [[package]]
+name = "hpack"
+version = "4.2.0"
+description = "Pure-Python HPACK header encoding"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "hpack-4.2.0-py3-none-any.whl", hash = "sha256:858ac0b02280fa582b5080d68db0899c62a80375e0e5413a74970c5e518b6986"},
+    {file = "hpack-4.2.0.tar.gz", hash = "sha256:0895cfa3b5531fc65fe439c05eb65144f123bf7a394fcaa56aa423548d8e45c0"},
+]
+
+[[package]]
 name = "httpcore"
 version = "1.0.9"
 description = "A minimal low-level HTTP client."
@@ -1500,6 +1569,7 @@ files = [
 [package.dependencies]
 anyio = "*"
 certifi = "*"
+h2 = {version = ">=3,<5", optional = true, markers = "extra == \"http2\""}
 httpcore = "==1.*"
 idna = "*"
 
@@ -1546,6 +1616,19 @@ quality = ["libcst (>=1.4.0)", "mypy (==1.15.0)", "ruff (>=0.9.0)", "ty"]
 testing = ["Jinja2", "Pillow", "authlib (>=1.3.2)", "duckdb", "fastapi", "fastapi", "httpx", "itsdangerous", "jedi", "numpy", "pytest (>=8.4.2)", "pytest-asyncio", "pytest-cov", "pytest-env", "pytest-mock", "pytest-rerunfailures (<16.0)", "pytest-vcr", "pytest-xdist", "soundfile", "urllib3 (<2.0)"]
 torch = ["safetensors[torch]", "torch"]
 typing = ["types-PyYAML", "types-simplejson", "types-toml", "types-tqdm", "types-urllib3", "typing-extensions (>=4.8.0)"]
+
+[[package]]
+name = "hyperframe"
+version = "6.1.0"
+description = "Pure-Python HTTP/2 framing"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "hyperframe-6.1.0-py3-none-any.whl", hash = "sha256:b03380493a519fce58ea5af42e4a42317bf9bd425596f7a0835ffce80f1a42e5"},
+    {file = "hyperframe-6.1.0.tar.gz", hash = "sha256:f630908a00854a7adeabd6382b43923a4c4cd4b821fcb527e6ab9e15382a3b08"},
+]
 
 [[package]]
 name = "idna"
@@ -1719,6 +1802,19 @@ files = [
 ]
 
 [[package]]
+name = "jmespath"
+version = "1.1.0"
+description = "JSON Matching Expressions"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "jmespath-1.1.0-py3-none-any.whl", hash = "sha256:a5663118de4908c91729bea0acadca56526eb2698e83de10cd116ae0f4e97c64"},
+    {file = "jmespath-1.1.0.tar.gz", hash = "sha256:472c87d80f36026ae83c6ddd0f1d05d4e510134ed462851fd5f754c8c3cbb88d"},
+]
+
+[[package]]
 name = "joblib"
 version = "1.5.3"
 description = "Lightweight pipelining with Python functions"
@@ -1769,51 +1865,66 @@ referencing = ">=0.31.0"
 
 [[package]]
 name = "litellm"
-version = "1.96.2"
+version = "1.109.1"
 description = "Library to easily interface with LLM API providers"
 optional = false
-python-versions = "<3.15,>=3.10"
+python-versions = "<3.16,>=3.10"
 groups = ["main"]
 markers = "python_version < \"3.15\""
 files = [
-    {file = "litellm-1.96.2-cp310-abi3-macosx_10_12_x86_64.whl", hash = "sha256:0aa667c6fc58b20ff04fe5efaac5cf48b1e224bac32dbf22ced2e5ee695bc4ba"},
-    {file = "litellm-1.96.2-cp310-abi3-macosx_11_0_arm64.whl", hash = "sha256:e5d96d16b37a043e482a134a71b0c1df4e700603fc14df22e4bd27dc9e38f5c4"},
-    {file = "litellm-1.96.2-cp310-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:1a42d68b903f6b605bd7744e9700b16a725f897c5edcc448e491cec14cd5a9db"},
-    {file = "litellm-1.96.2-cp310-abi3-manylinux_2_28_x86_64.whl", hash = "sha256:76e9c72cb6757bb7c35cd23e3e4fc028910795910ae92491076bd50f7b61f205"},
-    {file = "litellm-1.96.2-cp310-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:1f304b8854e385946469d2dcf8ef88e24357120671caeaddea11b085b0302308"},
-    {file = "litellm-1.96.2-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:8c21a57a0f3507176492a4f65361a4302af1a0723c97e96961c7ed0e96934832"},
-    {file = "litellm-1.96.2-cp310-abi3-win_amd64.whl", hash = "sha256:0168e49cffecb0b45a0d044ecb7e5f7f6fc9e14d974b50f54edfa9d8e0db9c1d"},
-    {file = "litellm-1.96.2.tar.gz", hash = "sha256:80d477ae092b05ce023b5084542cb3cb75999b52b1dd2e4d834fb348effc9399"},
+    {file = "litellm-1.109.1-cp310-abi3-macosx_10_12_x86_64.whl", hash = "sha256:1fdf789757fc71c9a9ac183cd326b978782dfa9ebd44087c6603b5b963956841"},
+    {file = "litellm-1.109.1-cp310-abi3-macosx_11_0_arm64.whl", hash = "sha256:1b2866219249186babe194d7e3f4af29095c0905a4c5712b62be662aa6a38fb7"},
+    {file = "litellm-1.109.1-cp310-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:1dcf31166d385e6eaaef7f5840ba88c4eac319d1aa2d3ec2787de981e07fcf11"},
+    {file = "litellm-1.109.1-cp310-abi3-manylinux_2_28_x86_64.whl", hash = "sha256:1c8b4dd671fa0cd0850aa751678704ff77e595fb1e6085b2dc3be39ee19bdaaf"},
+    {file = "litellm-1.109.1-cp310-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:c84737897b6b459acd660fd7adb33e2d552c5d0b93c4a47b8cd4f5e299c93bac"},
+    {file = "litellm-1.109.1-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:b94080b0436c471e686735d10fd1069c151cf8b9816d823a1450419573f30e46"},
+    {file = "litellm-1.109.1-cp310-abi3-win_amd64.whl", hash = "sha256:738fd2465e24460f03a8c5ff33dc57c3fdfad88ff489811d718ee6ba3c5ad900"},
+    {file = "litellm-1.109.1.tar.gz", hash = "sha256:5b98ecccd93374b8ea1746ee98de16b505c0b5e6c0dfb7e8afec3d817d08d7c2"},
 ]
 
 [package.dependencies]
 aiohttp = ">=3.14.2,<4.0"
+anyio = ">=4.14.0,<5.0"
+boto3 = ">=1.43.117,<2.0"
+certifi = ">=2026.10.19"
 click = ">=8.0.0,<9.0"
-fastuuid = ">=0.14.0,<1.0"
-httpx = ">=0.28.0,<1.0"
+fastuuid = {version = ">=0.14.0,<1.0", markers = "python_full_version < \"3.15.0\""}
+filelock = ">=3.16.1,<5"
+httpx = {version = ">=0.28.0,<1.0", extras = ["http2"]}
+huggingface-hub = ">=0.34.0,<2.0"
 importlib-metadata = ">=8.0.0,<9.0"
 jinja2 = ">=3.1.6,<4.0"
 jsonschema = ">=4.0.0,<5.0"
-openai = ">=2.20.0,<3.0.0"
-pydantic = ">=2.10.0,<3.0.0"
+openai = ">=2.20.0,<4.0.0"
+packaging = ">=24.0"
+pydantic = [
+    {version = ">=2.11.0,<3.0.0", markers = "python_full_version < \"3.14.0\""},
+    {version = ">=2.12.0,<3.0.0", markers = "python_full_version == \"3.14.*\""},
+]
 pydantic-settings = ">=2.14.1,<3.0"
 python-dotenv = ">=1.0.0,<2.0"
-tiktoken = ">=0.8.0,<1.0"
+pyyaml = ">=6.0.3,<7.0"
+tiktoken = [
+    {version = ">=0.8.0,<1.0", markers = "python_full_version < \"3.14.0\""},
+    {version = ">=0.12.0,<1.0", markers = "python_full_version == \"3.14.*\""},
+]
 tokenizers = ">=0.21.0,<1.0"
+typing-extensions = ">=4.13.0,<5.0"
 
 [package.extras]
-bedrock-realtime = ["aws-sdk-bedrock-runtime (>=0.7.0,<0.8.0) ; python_full_version >= \"3.12.0\""]
-caching = ["diskcache (>=5.6.3,<6.0)"]
-cli = ["inquirerpy (>=0.3.4,<1.0)", "pyyaml (>=6.0.3,<7.0)", "requests (>=2.32.0,<3.0)", "rich (>=13.9.4,<14.0)"]
-extra-proxy = ["a2a-sdk (>=1.1.0,<2.0)", "azure-identity (>=1.25.2,<2.0)", "azure-keyvault-secrets (>=4.10.0,<5.0)", "google-cloud-iam (>=2.19.1,<3.0)", "google-cloud-kms (>=2.24.2,<3.0)", "prisma (>=0.11.0,<1.0)", "redisvl (>=0.4.1,<1.0)", "resend (>=2.23.0,<3.0)"]
+bedrock-realtime = ["aws-sdk-bedrock-runtime[awscrt] (>=0.10.0,<0.12.0) ; python_full_version >= \"3.12.0\""]
+cli = ["inquirerpy (>=0.3.4,<1.0)", "keyring (>=25.6.0,<26.0)", "pyyaml (>=6.0.3,<7.0)", "requests (>=2.32.0,<3.0)", "rich (>=13.9.4,<14.0)", "tomlkit (>=0.13.3,<1.0)"]
+extra-proxy = ["a2a-sdk (>=1.1.0,<2.0)", "azure-identity (>=1.25.2,<2.0)", "azure-keyvault-secrets (>=4.10.0,<5.0)", "google-cloud-iam (>=2.19.1,<3.0)", "google-cloud-kms (>=2.24.2,<3.0)", "prisma (>=0.11.0,<1.0)", "psycopg (>=3.2,<4.0)", "psycopg-binary (>=3.2,<4.0)", "redisvl (>=0.4.1,<1.0)", "resend (>=2.23.0,<3.0)"]
 google = ["google-cloud-aiplatform (>=1.133.0,<2.0)"]
-grpc = ["grpcio (==1.78.0)"]
-mlflow = ["mlflow (>=3.11.1,<4.0)"]
-proxy = ["apscheduler (>=3.11.2,<4.0)", "azure-identity (>=1.25.2,<2.0)", "azure-storage-blob (>=12.28.0,<13.0)", "backoff (>=2.2.1,<3.0)", "boto3 (>=1.43.1,<2.0)", "cryptography (>=49.0.0,<51.0)", "expression (>=5.6.0,<6.0)", "fastapi (>=0.136.3,<1.0)", "fastapi-sso (>=0.19.0,<1.0)", "granian (>=2.7.4,<3.0)", "gunicorn (>=23.0.0,<24.0)", "inquirerpy (>=0.3.4,<1.0)", "litellm-enterprise (==0.1.53)", "litellm-proxy-extras (==0.4.81)", "mcp (>=1.28.1,<2.0)", "orjson (>=3.11.6,<4.0)", "polars (>=1.38.1,<2.0)", "pyjwt (>=2.13.0,<3.0)", "pynacl (>=1.6.2,<2.0)", "pyroscope-io (>=0.8.16,<1.0) ; sys_platform != \"win32\"", "python-multipart (>=0.0.27,<1.0)", "pyyaml (>=6.0.3,<7.0)", "restrictedpython (>=8.1,<9.0)", "rich (>=13.9.4,<14.0)", "rq (>=2.7.0,<3.0)", "soundfile (>=0.12.1,<1.0)", "starlette (>=1.0.1,<2.0)", "uvicorn (>=0.33.0,<1.0)", "uvloop (>=0.21.0,<1.0) ; sys_platform != \"win32\"", "websockets (>=15.0.1,<16.0)"]
-proxy-runtime = ["anthropic[vertex] (>=0.84.0,<1.0)", "azure-ai-contentsafety (>=1.0.0,<2.0)", "azure-storage-file-datalake (>=12.20.0,<13.0)", "ddtrace (>=4.8.2,<5.0)", "detect-secrets (>=1.5.0,<2.0)", "google-cloud-aiplatform (>=1.133.0,<2.0)", "google-genai (>=1.37.0,<2.0)", "grpcio (==1.78.0)", "langfuse (>=2.59.7,<3.0)", "llm-sandbox (>=0.3.39,<1.0)", "mangum (>=0.17.0,<1.0)", "opentelemetry-api (==1.28.0)", "opentelemetry-exporter-otlp (==1.28.0)", "opentelemetry-instrumentation-fastapi (==0.49b0)", "opentelemetry-sdk (==1.28.0)", "prometheus-client (>=0.20.0,<1.0)", "pypdf (>=6.12.0,<7.0)", "sentry-sdk (>=2.21.0,<3.0)"]
+grpc = ["grpcio (==1.84.1)"]
+mcp = ["httpx2 (>=2.10.0,<3)", "mcp (>=2.3.0,<3)", "pydantic (>=2.12.0,<3)"]
+mlflow = ["mlflow (>=3.17.2,<4.0)"]
+proxy = ["apscheduler (>=3.11.2,<4.0)", "azure-identity (>=1.25.2,<2.0)", "azure-storage-blob (>=12.28.0,<13.0)", "backoff (>=2.2.1,<3.0)", "backports-zstd (>=1.0.0,<2.0) ; python_full_version < \"3.14.0\"", "boto3 (>=1.43.117,<2.0)", "cryptography (>=49.0.0,<51.0)", "expression (>=5.6.0,<6.0)", "fastapi (>=0.136.3,<1.0)", "fastapi-sso (>=0.19.0,<1.0)", "granian (>=2.7.4,<3.0) ; python_full_version < \"3.15.0\"", "granian (>=2.8.0,<3.0) ; python_full_version >= \"3.15.0\"", "gunicorn (>=23.0.0,<24.0)", "hiredis (>=3.0.0,<4.0) ; python_full_version < \"3.15.0\"", "hiredis (>=3.5.0,<4.0) ; python_full_version >= \"3.15.0\"", "httpx2 (>=2.10.0,<3)", "inquirerpy (>=0.3.4,<1.0)", "litellm-enterprise (==0.1.82)", "litellm-proxy-extras (==0.4.113)", "mcp (>=2.3.0,<3)", "orjson (>=3.11.6,<4.0) ; python_full_version < \"3.15.0\"", "orjson (>=3.12.0,<4.0) ; python_full_version >= \"3.15.0\"", "polars (>=1.38.1,<2.0)", "pydantic (>=2.12.0,<3)", "pyjwt (>=2.13.0,<3.0)", "pynacl (>=1.6.2,<2.0)", "pyroscope-io (>=0.8.16,<1.0) ; sys_platform != \"win32\"", "python-multipart (>=0.0.27,<1.0)", "pyyaml (>=6.0.3,<7.0)", "restrictedpython (>=8.5,<9.0)", "rich (>=13.9.4,<14.0)", "rq (>=2.7.0,<3.0)", "soundfile (>=0.12.1,<1.0)", "starlette (>=1.0.1,<2.0)", "tomlkit (>=0.13.3,<1.0)", "uvicorn (>=0.33.0,<1.0)", "uvloop (>=0.22.1,<1.0) ; sys_platform != \"win32\"", "websockets (>=15.0.1,<16.0)"]
+proxy-runtime = ["anthropic[vertex] (>=0.84.0,<1.0)", "azure-ai-contentsafety (>=1.0.0,<2.0)", "azure-storage-file-datalake (>=12.20.0,<13.0)", "ddtrace (>=4.8.2,<5.0)", "detect-secrets (>=1.5.0,<2.0)", "google-cloud-aiplatform (>=1.133.0,<2.0)", "google-cloud-speech (>=2.40.0,<3.0)", "google-genai (>=1.37.0,<2.0)", "grpcio (==1.84.1)", "langfuse (>=4.7,<5.0)", "llm-sandbox (>=0.3.39,<1.0)", "mangum (>=0.17.0,<1.0)", "opentelemetry-api (==1.45.1)", "opentelemetry-exporter-otlp (==1.45.1)", "opentelemetry-instrumentation-fastapi (==0.66b1)", "opentelemetry-sdk (==1.45.1)", "prometheus-client (>=0.20.0,<1.0)", "pypdf (>=6.21.2,<7.0)", "sentry-sdk (>=2.21.0,<3.0)"]
 saml = ["python3-saml (>=1.16.0,<2.0)"]
 semantic-router = ["aurelio-sdk (>=0.0.19,<1.0) ; python_full_version < \"3.14.0\"", "semantic-router (>=0.1.15,<1.0) ; python_full_version < \"3.14.0\""]
 stt-nvidia-riva = ["audioread (>=3.0.1)", "numpy (>=1.26.0)", "nvidia-riva-client (>=2.15.0)", "soundfile (>=0.12.1)"]
+stt-vertex-chirp = ["google-cloud-speech (>=2.40.0,<3.0)"]
 utils = ["numpydoc (>=1.8.0,<2.0)"]
 
 [[package]]
@@ -3376,6 +3487,25 @@ docs = ["mercurial (>5.7)", "ryd"]
 jinja2 = ["ruamel.yaml.jinja2 (>=0.2)"]
 libyaml = ["ruamel.yaml.clibz (>=0.3.7) ; platform_python_implementation == \"CPython\""]
 oldlibyaml = ["ruamel.yaml.clib ; platform_python_implementation == \"CPython\""]
+
+[[package]]
+name = "s3transfer"
+version = "0.19.3"
+description = "An Amazon S3 Transfer Manager"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+markers = "python_version < \"3.15\""
+files = [
+    {file = "s3transfer-0.19.3-py3-none-any.whl", hash = "sha256:24eb7535804306355e31c952a90022bf5b2f9d760f9a11062c7493a217c08553"},
+    {file = "s3transfer-0.19.3.tar.gz", hash = "sha256:8326acc3d056d7f7b8a37110c7d2aea41f67e83f6ae79cd3b5fbcca34c726406"},
+]
+
+[package.dependencies]
+botocore = ">=1.37.4,<2.0a0"
+
+[package.extras]
+crt = ["botocore[crt] (>=1.37.4,<2.0a0)"]
 
 [[package]]
 name = "scikit-learn"
